@@ -88,7 +88,7 @@ const JobApplicationSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
+JobApplicationSchema.index({ user: 1, createdAt: -1 });
 // Text index for search
 JobApplicationSchema.index({ company: 'text', role: 'text', location: 'text' });
 

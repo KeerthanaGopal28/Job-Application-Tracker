@@ -6,7 +6,7 @@ const JobApplication = require('../models/JobApplication');
 // Supports: ?stage=Applied&search=google&sort=-createdAt&priority=true
 const getApplications = async (req, res) => {
   try {
-    const { stage, search, sort, priority, source } = req.query;
+    const { stage, search, sort, priority, source, page = 1, limit = 10 } = req.query;
     const filter = { user: req.user._id };
 
     if (stage && stage !== 'All') filter.stage = stage;
@@ -22,12 +22,18 @@ const getApplications = async (req, res) => {
     }
 
     const sortOption = sort || '-createdAt';
+    const skip = (page - 1) * limit;
 
-    const applications = await JobApplication.find(filter)
-      .sort(sortOption)
-      .lean();
+    const [applications, total] = await Promise.all([
+      JobApplication.find(filter)
+        .sort(sortOption)
+        .skip(skip)
+        .limit(Number(limit))
+        .lean(),
+      JobApplication.countDocuments(filter)
+    ]);
 
-    res.json({ success: true, count: applications.length, data: applications });
+    res.json({ success: true, count: applications.length, total, page: Number(page), limit: Number(limit), totalPages: Math.ceil(total / limit), data: applications });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
