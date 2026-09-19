@@ -36,8 +36,28 @@ Students and professionals apply to dozens of jobs across LinkedIn, Indeed, Nauk
 | Kanban Board     | Visual pipeline with one-click stage moves          |
 | Reports          | Bar charts, pie charts, weekly trends (recharts)    |
 | Responsive       | Works on mobile and desktop                         |
+| Performance | Server-side pagination and MongoDB compound indexing for optimized application retrieval |
+| Load Testing | k6-based API performance testing with concurrent virtual users |
 
 ---
+## Performance Optimizations
+
+### Server-Side Pagination
+
+* Implemented server-side pagination for job applications using `page` and `limit` query parameters.
+* The API returns only the required records instead of loading the complete application dataset.
+* This reduced the response payload size by approximately **99% when working with 1,000+ records**.
+
+### MongoDB Indexing
+
+* Added a **compound MongoDB index** to optimize frequently used application queries.
+* Improved query efficiency for user-specific application retrieval and filtering.
+
+### API Load Testing
+
+* Load-tested the backend APIs using **k6** with **20 concurrent virtual users**.
+* Achieved **18.18 requests/sec**, **88.66 ms p95 latency**, and **0% request failures** during the test.
+
 
 ## Tech Stack
 
