@@ -257,13 +257,7 @@ After building this project you will understand:
 
 ## Author
 
-Sonia Thakur
-
-GitHub:
-https://github.com/Sonia068
-
-LinkedIn:
-https://www.linkedin.com/in/sonia-thakur-6ab93b349/
+Keerthana H G
 
 ---
 
