@@ -17,7 +17,10 @@ connectDB();
 const app = express();
 
 // ── Middleware ──────────────────────────────────────────────
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: [
+    'http://localhost:3000',
+    'https://job-application-tracker-xazn.onrender.com'
+  ], credentials: true }));
 app.use(express.json());
 app.use(morgan('dev'));
 
