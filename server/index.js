@@ -19,7 +19,8 @@ const app = express();
 // ── Middleware ──────────────────────────────────────────────
 app.use(cors({ origin: [
     'http://localhost:3000',
-    'https://job-application-tracker-xazn.onrender.com'
+    'https://job-application-tracker-xazn.onrender.com',
+    'https://your-new-docker-frontend.onrender.com'
   ], credentials: true }));
 app.use(express.json());
 app.use(morgan('dev'));
