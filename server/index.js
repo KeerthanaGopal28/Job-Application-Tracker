@@ -17,14 +17,21 @@ connectDB();
 const app = express();
 
 // ── Middleware ──────────────────────────────────────────────
-app.use(cors({ origin: [
-    'http://localhost:3000',
-    'https://job-application-tracker-xazn.onrender.com',
-    'https://your-new-docker-frontend.onrender.com'
-  ], credentials: true }));
-app.use(express.json());
-app.use(morgan('dev'));
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://job-application-tracker-xazn.onrender.com",
+  "https://job-application-tracker-frontend-docker.onrender.com"
+];
 
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
+app.options("*", cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 // ── Routes ──────────────────────────────────────────────────
 app.use('/api/auth',         require('./routes/authRoutes'));
 app.use('/api/applications', require('./routes/applicationRoutes'));
